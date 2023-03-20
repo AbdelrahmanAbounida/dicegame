@@ -37,13 +37,13 @@ def create_app():
     login_manger.init_app(app)
     mail.init_app(app)
     db.init_app(app)
-
+    # debug_toolbar.init_app(app)
+    custom_bcrypt.init_app(app)
     # login configs
     login_manger.login_view = 'login'
     login_manger.login_message = 'You have to Login first to access the website'
     login_manger.login_message_category = 'warning'
-    debug_toolbar.init_app(app)
-    custom_bcrypt.init_app(app)
+    
     # blueprints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(contact_blueprint)
