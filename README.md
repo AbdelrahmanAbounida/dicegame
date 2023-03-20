@@ -1,4 +1,4 @@
-[![Made with Python](https://img.shields.io/badge/Made%20with-Python-blue?style=for-the-badge&logo=ros)](http://wiki.ros.org/)
+[![Made with Python](https://img.shields.io/badge/Made%20with-Python-orange?style=for-the-badge&logo=ros)](http://wiki.ros.org/)
 
 
 # Dice Game (Flask, Celery, Redis, Stripe)
