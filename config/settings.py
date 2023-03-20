@@ -21,7 +21,7 @@ CELERY_BROKER_URL = "json"
 CELERY_REDIS_MAX_CONNECTIONS = 5 # DEFAULT no limit
 
 # sqlalchemy database
-SQLALCHEMY_DATABASE_URI = "mysql://root:aboneda@localhost/diceGame"
+SQLALCHEMY_DATABASE_URI = ""
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # User
