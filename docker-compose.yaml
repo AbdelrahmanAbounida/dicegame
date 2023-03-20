@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  # 1- App
+  website: 
+    build: . # location of dockerimage
+    command: gunicorn -b 0.0.0.0:8000 --reload --access-logfile - "app:create_app()"
+    environment: 
+      - PYTHONUNBUFFERED= true # this will allow python to generate output directly to console without buffering and saving it in ram
+      - CELERY_BROKER_URL= redis://redis:6379/0
+    volumes: # whre u wanna save persistant/ cash data
+      - .:/app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+      - mysql_db
+
+  # 2- Redis
+  redis: 
+    image: 'redis:3.0-alpine'
+    command: redis-server --requirepass aboneda_dev_password # see it in config
+    volumes:
+      - 'redis:/var/lib/redis/data' 
+    ports:
+      - '6379:6379'
+
+  # 3- Celery
+  celery:
+    build: .
+    command: celery -A app.blueprints.contact.tasks worker --loglevel=info
+    env_file:
+    - '.env'
+    # volumes:
+    #   - './app'
+    environment:
+      - BROKER_URL=redis://:aboneda_dev_password@redis:6379/0
+    depends_on:
+      - redis
+
+  mysql_db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: aboneda
+      MYSQL_DATABASE: diceGame
+      MYSQL_USER: root
+      MYSQL_PASSWORD: aboneda
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+volumes:
+  redis:
+  mysql_db:

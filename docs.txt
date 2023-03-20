@@ -1,0 +1,106 @@
+#######################
+## Dockerizing the app
+#######################
+
+1- write dockerfile , docker-compose.yaml 
+2- docker-compose up build 
+
+## other commands
+docker-compose up 
+docker-compose down 
+docker-compose rm -f 
+
+#######################
+## Configuration
+#######################
+1- create config folder with settings.py >> this will create all global Configuration
+2- create instance folder with settings.py >> this will contains secret Configuration
+
+# instance folder contains the secret config file, app data, user uploads
+# config : also includes global config (not secret)
+
+#######################
+## Requirements
+#######################
+pip install pipreqs
+pipreqs . --force
+
+# makesure gunicorn exists in the requirements
+
+#######################
+## Run
+#######################
+docker-compose up --build 
+
+# we don't need manage.py as gunicorn gonna run the app directly from create_app() 
+
+# but u may use it during testing
+
+##############################
+## Testing and improvements
+##############################
+
+pytest , pytest-cov , flake8
+
+##############################
+## CLI
+##############################
+click 
+
+##############################
+## Debug Toolbar
+##############################
+flask debug Toolbar for debugging 
+but u have ti have secretkey and debug=True 
+
+##############################
+## Contact Form 
+##############################
+
+1- Flask-mail 
+2- Flask-WTF 
+3- WTF-Form 
+4- Celery 
+5- redis
+
+pip install -U Flask-WTF Flask-Mail WTForms Celery redis email_validator
+
+- by now we have 3 docker containers runnning (celery, redis and website)
+- add redis to docker-compose file 
+
+bynow these are all dependencies
+celery==5.2.7
+Flask==2.2.3
+Flask_DebugToolbar==0.13.1
+Flask_Login==0.6.2
+Flask_Mail==0.9.1
+Flask_WTF==1.1.1
+WTForms==3.0.1
+gunicorn==20.1.0
+pytest==7.2.2
+pytest-cov==4.0.0
+flake8==6.0.0
+email-validator==1.3.1
+redis==4.5.1
+
+##############################
+## user Form 
+##############################
+
+Build user model with its mixins
+pip install mysqlclient
+
+# create db in console
+
+from app.blueprints.auth.models import User
+from app.extensions import db
+from app import create_app
+
+app = create_app()
+with app.app_context():
+    db.create_all()
+
+
+# delete db
+db.session.query(User).delete()
+db.session.commit()

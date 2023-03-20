@@ -1,0 +1,32 @@
+{% extends 'components/layout.html' %}
+
+{% block meta_description %}Compete against yourself and others by guessing the
+outcome of a dice roll. Win points and dominate the leaderboard.{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row text-center mt-5">
+
+    </div>
+    <div class="row text-center pt-5" style="height: 200px;">
+      <div class="col-md-4 my-3">
+        <i class="fas fa-fw fa-5x fa-bullhorn text-success"></i>
+        <h2 class="text-white fw-bold ">Place bets</h2>
+        <p class="text-muted">Correctly guess the dice's roll.</p>
+        <a href="#" class="btn btn-outline-success">Sign up</a>
+      </div>
+      <div class="col-md-4 my-3">
+        <i class="fas fa-fw fa-5x fa-database text-success"></i>
+        <h2 class="text-white fw-bold ">Win currency</h2>
+        <p class="text-muted">Gain coins if your guess is correct.</p>
+        <a href="#" class="btn btn-outline-success">Sign up</a>
+      </div>
+      <div class="col-md-4 my-3">
+        <i class="fas fa-fw fa-5x fa-trophy text-success"></i>
+        <h2 class="text-white fw-bold ">Leaderboard</h2>
+        <p class="text-muted">Compare your results to others.</p>
+        <a href="#" class="btn btn-outline-success">Sign up</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
